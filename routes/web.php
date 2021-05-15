@@ -24,6 +24,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('cursos', [CourseController::class, 'index'])->name('courses.index');
 
 
-Route::get('cursos/{course}', function () {
-    return "Aca se mostraran el contentido de un solo curso" ;    
-})->name('courses.show');
+Route::get('cursos/{course}', [CourseController::class, 'show'])->name('courses.show');
