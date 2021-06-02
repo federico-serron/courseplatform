@@ -90,7 +90,6 @@ class Course extends Model
     }
 
 
-
     //RELACION 1 A 1 POLIMORFICA
     public function image(){
         return $this->morphOne('App\Models\Image', 'imageable');
