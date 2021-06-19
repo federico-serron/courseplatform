@@ -7,7 +7,26 @@
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+{{-- MENSAJE DE SESION --}}
+@if (session('info'))
+    
+    <div class="alert alert-primary" role="alert">
+        <strong>Hecho! </strong>{{ session('info') }}
+    </div>
+
+@endif
+
+{{-- FORMULARIO --}}
+    <div class="card">
+        <div class="card-body">
+            {!! Form::model($role, ['route' => ['admin.roles.update', $role], 'method'=> 'put']) !!}
+
+                @include('admin.roles.partials.form')
+                
+                {!! Form::submit('Editar rol', ['class' => 'btn btn-primary mt-2']) !!}
+            {!! Form::close() !!}
+        </div>
+    </div>
 @stop
 
 @section('css')
