@@ -1,7 +1,8 @@
 <?php
+
+use App\Http\Controllers\Instructor\CourseController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\InstructorCourse;
 
 Route::redirect('', 'instructor/courses');
 
-Route::get('courses', InstructorCourse::class)->middleware('can:Leer cursos')->name('course.index');
+Route::resource('courses', CourseController::class)->names('courses');

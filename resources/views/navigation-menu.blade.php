@@ -124,7 +124,7 @@
 
                                 @can('Leer cursos')
                                     
-                                    <x-jet-dropdown-link href="{{ route('instructor.course.index') }}">
+                                    <x-jet-dropdown-link href="{{ route('instructor.courses.index') }}">
                                         {{ __('Instructor') }}
                                     </x-jet-dropdown-link>
 
@@ -213,7 +213,7 @@
                     </x-jet-responsive-nav-link>
 
                     @can('Leer cursos')
-                        <x-jet-responsive-nav-link href="{{ route('instructor.course.index') }}" :active="request()->routeIs('instructor.course.index')">
+                        <x-jet-responsive-nav-link href="{{ route('instructor.courses.index') }}" :active="request()->routeIs('instructor.courses.index')">
                             {{ __('Instructor') }}
                         </x-jet-responsive-nav-link>
                     @endcan

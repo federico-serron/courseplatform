@@ -107,7 +107,7 @@
                 </tbody>
             </table>
 
-            <div class="mt-6">
+            <div class="py-2 px-2">
                 {{ $courses->links() }}
             </div>
 
