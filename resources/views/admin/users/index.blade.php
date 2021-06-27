@@ -16,7 +16,7 @@
 
     @endif
     
-    @livewire('admin-users')
+    @livewire('admin.users-index')
 @stop
 
 @section('css')
