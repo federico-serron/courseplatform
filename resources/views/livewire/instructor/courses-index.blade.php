@@ -1,8 +1,9 @@
 <div class="container py-8">
     <!-- This example requires Tailwind CSS v2.0+ -->
     <x-table-responsive>
-        <div class="px-6 py-4">
-            <input wire:model="search" wire:keydown="clearPage" placeholder="Busca un curso..." type="search" class="form-input w-full shadow-sm">
+        <div class="px-6 py-4 flex">
+            <input wire:model="search" wire:keydown="clearPage" placeholder="Busca un curso..." type="search" class="form-input flex-1 shadow-sm">
+            <a class="btn btn-primary ml-2" href="{{ route('instructor.courses.create') }}">+ Crear curso</a>
         </div>
 
         @if ($courses->count())
@@ -33,7 +34,12 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 h-10 w-10">
-                                    <img class="h-10 w-10 rounded-full" src="{{ Storage::url($course->image->url) }}" alt="">
+                                    @isset($course->image)
+                                        
+                                        <img class="h-10 w-10 rounded-full" src="{{ Storage::url($course->image->url) }}" alt="">
+                                    @else
+                                        <img class="h-10 w-10 rounded-full" src="https://images.pexels.com/photos/7181184/pexels-photo-7181184.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
+                                    @endisset
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900">
@@ -99,7 +105,7 @@
                         </td>
 
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <a href="#" class="text-indigo-600 hover:text-indigo-900">Editar</a>
+                            <a href="{{ route('instructor.courses.edit', $course) }}" class="text-indigo-600 hover:text-indigo-900">Editar</a>
                         </td>
                     </tr>
                 @endforeach
