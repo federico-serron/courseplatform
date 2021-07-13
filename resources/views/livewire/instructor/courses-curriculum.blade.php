@@ -13,7 +13,7 @@
 
                 @if ($section->id == $item->id)
                     <form wire:submit.prevent="update">
-                        <input wire:model="section.name" class="text-gray-700 align-middle h-10 rounded-xl w-full" placeholder="Ingrese el nombre de la seccion">
+                        <input wire:model="section.name" class="bg-white border w-full border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Ingrese el nombre de la seccion">
 
                         @error('section.name')
                             <span class="text-xs text-red-500">{{ $message }}</span>
@@ -29,6 +29,10 @@
                             <i class="fas fa-eraser cursor-pointer text-red-500" wire:click="destroy({{ $item }})"></i>
                         </div>
                     </header>
+
+                    <div>
+                        @livewire('instructor.courses-lesson', ['section' => $item], key($item->id))
+                    </div>
                     
                 @endif
 
@@ -49,7 +53,7 @@
                 <h1 class="text-xl font-bold">Agregar nueva seccion</h1>
 
                 <div>
-                    <input wire:model="name" class="text-gray-700 align-middle h-10 rounded-xl w-full mt-2" placeholder="Escriba el nombre de la seccion">
+                    <input wire:model="name" class="bg-white border w-full border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 mt-2" placeholder="Escriba el nombre de la seccion">
 
                     @error('name')
                         <span class="text-xs text-red-500">{{ $message }}</span>
