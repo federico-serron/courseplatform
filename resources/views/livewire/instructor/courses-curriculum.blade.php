@@ -8,7 +8,7 @@
 
     @foreach ($course->sections as $item)
         
-        <article class="card mb-6">
+        <article x-data="{open : true}" class="card mb-6">
             <div class="card-body bg-gray-100">
 
                 @if ($section->id == $item->id)
@@ -22,7 +22,7 @@
                 @else
 
                     <header class="flex justify-between items-center">
-                        <h1 class="cursor-pointer"><strong>Seccion: </strong>{{ $item->name }}</h1>
+                        <h1 class="cursor-pointer" x-on:clik="open = !open"><strong>Seccion: </strong>{{ $item->name }}</h1>
 
                         <div>
                             <i class="fas fa-edit cursor-pointer text-blue-500" wire:click="edit({{ $item }})"></i>
@@ -30,7 +30,7 @@
                         </div>
                     </header>
 
-                    <div>
+                    <div x-show="open">
                         @livewire('instructor.courses-lesson', ['section' => $item], key($item->id))
                     </div>
                     

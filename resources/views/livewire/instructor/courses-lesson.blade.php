@@ -1,8 +1,8 @@
-<div>
+<div >
 
     @foreach ($section->lessons as $item)
 
-        <article class="mt-4">
+        <article x-data="{open : false}" class="mt-4">
             <div class="card">
                 <div class="card-body">
 
@@ -42,10 +42,10 @@
                 @else
                         
                     <header>
-                        <h1><i class="far fa-play-circle text-blue-500 mr-1"></i> Leccion: {{ $item->name }}</h1>
+                        <h1 x-on:click="open = !open" class="cursor-pointer"><i class="far fa-play-circle text-blue-500 mr-1"></i> Leccion: {{ $item->name }}</h1>
                     </header>
 
-                    <div>
+                    <div x-show="open">
                         <hr class="my-2">
 
                         <p class="text-sm">Plataforma: {{ $item->platform->name }}</p>
@@ -56,8 +56,12 @@
                             <button class="btn btn-danger text-sm" wire:click="destroy({{ $item }})">Eliminar</button>
                         </div>
 
-                        <div>
+                        <div class="mb-4">
                             @livewire('instructor.lesson-description', ['lesson' => $item], key($item->id))
+                        </div>
+
+                        <div>
+                            @livewire('instructor.lesson-resource', ['lesson' => $item], key($item->id))
                         </div>
 
                     </div>
