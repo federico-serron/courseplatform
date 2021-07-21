@@ -15,7 +15,7 @@ class RoleController extends Controller
     {
         $this->middleware('can:Listar role')->only('index');
         $this->middleware('can:Crear role')->only('create', 'store');
-        $this->middleware('can:Editar role')->only('update');
+        $this->middleware('can:Editar role')->only('edit', 'update');
         $this->middleware('can:Eliminar role')->only('destroy');
     }
     /**

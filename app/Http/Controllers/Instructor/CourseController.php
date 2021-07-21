@@ -10,6 +10,7 @@ use App\Models\Level;
 use App\Models\Price;
 use Illuminate\Support\Facades\Storage;
 
+
 class CourseController extends Controller
 {
     /**
@@ -89,6 +90,9 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
+
+        $this->authorize('dicacated', $course);
+
         $categories = Category::pluck('name', 'id');
         $levels = Level::pluck('name', 'id');
         $prices = Price::pluck('name', 'id');
@@ -105,6 +109,9 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
+
+        $this->authorize('dicacated', $course);
+
         $request->validate([
             'title' => 'required',
             'subtitle' => 'required',
@@ -150,6 +157,8 @@ class CourseController extends Controller
     }
 
     public function goals(Course $course){
+
+        $this->authorize('dicacated', $course);
 
         return view('instructor.courses.goals', compact('course'));
 
