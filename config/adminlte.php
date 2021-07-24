@@ -85,7 +85,7 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
+    'layout_fixed_sidebar' => true,
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
 
@@ -254,10 +254,11 @@ return [
             'active' => ['admin/roles*'],
             'can'  => 'Listar role',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'OPCIONES DE CURSO'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
+            'text' => 'Pendientes de aprobacion',
+            'route'  => 'admin.courses.index',
+            'active' => ['admin/courses*'],
             'icon' => 'fas fa-fw fa-user',
         ],
         [

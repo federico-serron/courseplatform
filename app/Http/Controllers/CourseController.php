@@ -8,13 +8,13 @@ use Illuminate\Http\Request;
 class CourseController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('can:Listar cursos')->only('index');
-        $this->middleware('can:Crear cursos')->only('create', 'store');
-        $this->middleware('can:Actualizar cursos')->only('edit', 'update', 'goals');
-        $this->middleware('can:Eliminar cursos')->only('destroy');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('can:Listar cursos')->only('index');
+    //     $this->middleware('can:Crear cursos')->only('create', 'store');
+    //     $this->middleware('can:Actualizar cursos')->only('edit', 'update', 'goals');
+    //     $this->middleware('can:Eliminar cursos')->only('destroy');
+    // }
 
     public function index(){
         return view('courses.index');

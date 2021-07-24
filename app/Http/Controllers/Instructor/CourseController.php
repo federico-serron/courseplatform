@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -162,5 +163,13 @@ class CourseController extends Controller
 
         return view('instructor.courses.goals', compact('course'));
 
+    }
+
+
+    public function status(Course $course){
+        
+        $course->status = 2;
+        $course->save();
+        return back();
     }
 }

@@ -34,7 +34,7 @@ class CoursesStudents extends Component
                         ->paginate(3);
 
 
-        return view('livewire.instructor.courses-students', compact('students'))->layout('layouts.instructor');
+        return view('livewire.instructor.courses-students', compact('students'))->layout('layouts.instructor', ['course' => $this->course]);
     }
 
 
