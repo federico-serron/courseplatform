@@ -43,6 +43,12 @@ class Course extends Model
         return 'slug';
     }
 
+
+    // RELACION 1 A 1
+    public function observation(){
+        return $this->hasOne('App\Models\Observation');
+    }
+
     //RELACION 1 A MUCHOS
     public function reviews(){
         return $this->hasMany('App\Models\Review');
