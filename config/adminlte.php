@@ -256,6 +256,24 @@ return [
         ],
         ['header' => 'OPCIONES DE CURSO'],
         [
+            'text' => 'Precios',
+            'route'  => 'admin.prices.index',
+            'active' => ['admin/prices*'],
+            'icon' => 'fab fa-bitcoin',
+        ],
+        [
+            'text' => 'Categorias',
+            'route'  => 'admin.categories.index',
+            'active' => ['admin/categories*'],
+            'icon' => 'fas fa-fw fa-cogs',
+        ],
+        [
+            'text' => 'Niveles',
+            'route'  => 'admin.levels.index',
+            'active' => ['admin/levels*'],
+            'icon' => 'fas fa-fw fa-chart-line',
+        ],
+        [
             'text' => 'Pendientes de aprobacion',
             'route'  => 'admin.courses.index',
             'active' => ['admin/courses*'],
