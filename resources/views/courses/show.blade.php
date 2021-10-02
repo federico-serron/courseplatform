@@ -78,6 +78,8 @@
                 <div class="text-gray-700 text-base">{!! $course->description !!}</div>
             </section>
 
+            {{-- @livewire('CoursesReviews', ['course' => $course]) --}}
+
         </div>
 
         <div class="order-1 lg:order-2">
@@ -96,18 +98,24 @@
 
                     @can('enrolled', $course)
                     
-                        <form method="GET" action="{{ route('courses.status', $course) }}">
-                            @csrf{{ $requirement->name }}
-                            @method('post')
-                            <button class="btn btn-danger btn-block mt-4" type="submit">Continuar con el curso</button>
-                        </form>
+                    <a class="btn btn-danger btn-block mt-4" href="{{ route('courses.status', $course) }}">Continuar con el curso</a>
 
                     @else
-                        <form method="POST" action="{{ route('courses.enrolled', $course) }}">
-                            @csrf
-                            @method('post')
-                            <button class="btn btn-danger btn-block mt-4" type="submit">Tomar este curso</button>
-                        </form>
+                        @if ($course->price->value == 0)
+                            <p class="text-2xl font-bold text-green-500 mb-2">GRATIS</p>
+
+                            <form method="POST" action="{{ route('courses.enrolled', $course) }}">
+                                @csrf
+                                @method('post')
+                                <button class="btn btn-danger btn-block mt-4" type="submit">Tomar este curso</button>
+                            </form>
+
+                        @else
+                            <p class="text-2xl font-bold text-gray-500 mt-3 mb-2">U$S: {{ $course->price->value }}</p>
+                            <a href="{{ route('payment.checkout', $course) }}" class="btn btn-success btn-block">Comprar este curso</a>
+
+                        @endif
+
                     @endcan
 
                 </div>
