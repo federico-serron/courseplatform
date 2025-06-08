@@ -1,62 +1,106 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Course Platform
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A web application built with **Laravel 8**, **TailwindCSS**, and **Livewire**.
 
-## About Laravel
+## Prerequisites
+- PHP >= 7.4 (recommended 8.x)
+- Composer
+- Node.js (preferably v16, but workaround available for newer versions)
+- npm
+- MySQL
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Installation & Setup
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 1. Clone the repository
+```bash
+git clone <your-repo-url>
+cd courseplatform
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 2. Install PHP dependencies
+```bash
+composer install
+```
 
-## Learning Laravel
+### 3. Install Node dependencies
+```bash
+npm install
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 4. Configure Environment
+- Copy `.env.example` to `.env` if needed:
+  ```bash
+  cp .env.example .env
+  ```
+- Set your database credentials in `.env`:
+  ```env
+  DB_DATABASE=courses
+  DB_USERNAME=root
+  DB_PASSWORD=yourpassword
+  ```
+- Generate the Laravel app key:
+  ```bash
+  php artisan key:generate
+  ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 5. Prepare the Database
+- Create the database in MySQL (e.g., `courses`).
+- Run migrations and seeders:
+  ```bash
+  php artisan migrate --seed
+  # Or for a fresh start:
+  php artisan migrate:fresh --seed
+  ```
 
-## Laravel Sponsors
+### 6. Storage Link
+```bash
+php artisan storage:link
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### 7. Compile Frontend Assets
+#### If using Node.js v17 or newer (including v20+):
+- You must use the OpenSSL legacy provider workaround:
 
-### Premium Partners
+  **On Windows (PowerShell):**
+  ```powershell
+  $env:NODE_OPTIONS="--openssl-legacy-provider"; npm run dev
+  ```
+  **On Windows (CMD):**
+  ```cmd
+  set NODE_OPTIONS=--openssl-legacy-provider && npm run dev
+  ```
+  **On Linux/macOS:**
+  ```bash
+  export NODE_OPTIONS=--openssl-legacy-provider
+  npm run dev
+  ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+#### If using Node.js v16:
+```bash
+npm run dev
+```
 
-## Contributing
+### 8. Run the Laravel Development Server
+```bash
+php artisan serve
+```
+Visit [http://localhost:8000](http://localhost:8000) in your browser.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## Tech Stack
+- **Backend:** Laravel 8
+- **Frontend:** TailwindCSS, Livewire
+- **Database:** MySQL
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## Troubleshooting
+- If you see `ERR_OSSL_EVP_UNSUPPORTED`, use the workaround above for Node.js/OpenSSL.
+- If you get `Cannot write to directory "public/storage/courses"`, make sure to run `php artisan storage:link` and ensure the directory exists and is writable.
+- For permission/role seeder errors, use `php artisan migrate:fresh --seed` to reset your DB in development.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
 ## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+MIT

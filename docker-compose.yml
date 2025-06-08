@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: courseplatform-app
+    container_name: courseplatform-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    environment:
+      - APP_ENV=production
+      - DB_HOST=db
+      - DB_DATABASE=courses
+      - DB_USERNAME=root
+      - DB_PASSWORD=yourpassword
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - appnet
+
+
+  db:
+    image: mysql:8
+    container_name: courseplatform-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: courses
+      MYSQL_ROOT_PASSWORD: yourpassword
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - appnet
+
+networks:
+  appnet:
+
+volumes:
+  dbdata:
